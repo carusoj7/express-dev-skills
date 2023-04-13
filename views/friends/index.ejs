@@ -4,9 +4,26 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/stylesheets/style.css">
   <title>Friends</title>
 </head>
 <body>
   <h1>Friends</h1>
+    <ul>
+      <% friends.forEach(friend => { %>
+        <li>
+          <form action="/friends/<%= friend._id %>?_method=DELETE"
+            class="delete-form"
+            method="POST"
+            >
+          <button type="submit">X</button>
+        </form>
+          <a href="/friends/<%= friend._id %>"><%= friend.name %></a> 
+          - 
+          <%= friend.single ? 'single' : 'not single' %>
+        </li>
+        <% }) %>
+      </ul>
+      <a href="/friends/new">Add Friend</a>
 </body>
 </html>
